@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.post('/', (req, res) => {
+router.post('/', validateBody, (req, res) => {
   Hubs.add(req.body)
   .then(hub => {
     res.status(201).json(hub);
@@ -72,7 +72,7 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validateBody, (req, res) => {
   Hubs.update(req.params.id, req.body)
   .then(hub => {
     if (hub) {
@@ -107,7 +107,7 @@ router.get('/:id/messages', (req, res) => {
 });
 
 // add an endpoint for adding new message to a hub
-router.post('/:id/messages', (req, res) => {
+router.post('/:id/messages', validateBody, (req, res) => {
   const messageInfo = { ...req.body, hub_id: req.params.id };
 
   Messages.add(messageInfo)
@@ -122,5 +122,13 @@ router.post('/:id/messages', (req, res) => {
     });
   });
 });
+
+function validateBody(req, res, next){
+  if(req.body === false || {}){
+    res.status(404).json({message: "body not found"})
+  } else {
+    next()
+  }
+}
 
 module.exports = router;

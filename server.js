@@ -24,11 +24,20 @@ server.get('/', addName, (req, res) => {
     `);
 });
 
-server.use(function(req, res){
-  res.status(404).json({message: "Oops, we could not find what you're looking for"})
-})
+// server.use(function(req, res){
+//   res.status(404).json({message: "Oops, we could not find what you're looking for"})
+// })
 
 
+function lockout(req, res, next){
+  let number = 2;
+  if(number % 3 === 0){
+    next()
+  } else {
+    res.status(403).json({message: 'apilockout in force'})
+  }
+  
+}
 
 
 function addName(req, res, next){
