@@ -1,29 +1,25 @@
 {
-  "name": "webapi-iii-guided",
+  "name": "node-auth1-guided",
   "version": "1.0.0",
-  "description": "Guided Project for Web API-III Module",
+  "description": "Authentication Sprint Guided Project",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LambdaSchool/webapi-iii-guided-solution.git"
+    "server": "nodemon",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Lambda School",
-  "bugs": {
-    "url": "https://github.com/LambdaSchool/webapi-iii-guided-solution/issues"
-  },
-  "homepage": "https://github.com/LambdaSchool/webapi-iii-guided-solution#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.2"
-  },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
-    "knex": "^0.20.13",
-    "morgan": "^1.10.0",
-    "sqlite3": "^4.1.1"
+    "knex": "^0.21.1",
+    "knex-cleaner": "^1.3.0",
+    "pg": "^8.2.1",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
