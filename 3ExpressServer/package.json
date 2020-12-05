@@ -1,10 +1,10 @@
 {
   "name": "3ExpressServer",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^4.2.0",
     "nodemon": "^2.0.6"
   }
 }
