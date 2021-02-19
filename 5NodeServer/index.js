@@ -1,9 +1,10 @@
-const http = require('http');
+const express = require('express');
 
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200
-    res.end('<p>Hello World</p>')
+const server = express();
+
+server.get('/', (req, res) => {
+    res.send('Ello Poppet')
 })
 
 server.listen(8000, () => console.log('Listening**********'))
