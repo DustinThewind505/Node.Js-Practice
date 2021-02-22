@@ -67,12 +67,26 @@ server.post('/api/lessons', (req, res) => {
     res.json(req.body)
 })
 
+server.put('api/hubs/:id', (req, res) => {
+   const id = req.params.id;
+   const changes = req.body;
 
-server.delete("/api/hubs/:id", (res, req) => {
-    const id = req.params.id;
-    hubs = hubs.filter(element => element.id !== id);
+   let found = hubs.find(h => h.id == id);
 
-    res.send(hubs)
+   if(found) {
+       Object.assign(found, changes);
+   } else {
+       res.status(404).json({message: 'Hub not found'});
+   }
+
+    res.json(found)
+})
+
+
+server.delete("/api/hubs/:id", (req, res) => {
+    hubs = hubs.filter(element => element.id !== parseInt(req.params.id));
+
+    res.json(hubs)
 })
 
 
