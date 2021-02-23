@@ -3,6 +3,27 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 
+function logger(req, res, next) {
+    console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url}`);
+    next();
+}
+
+function approachTheCastle(req, res, next) {
+    console.log('Approach the castle door, Dracula invites you inside...');
+    next();
+}
+
+function auth(req, res, next) {
+    if(req.url === '/sunlight'){
+        next();
+    } else {
+        res.status(500).send('<h1>Eaten Alive❣</h1>')
+    }
+}
+
+router.use(logger);
+router.use(approachTheCastle);
+
 let vampires = [
     {
         id: 1,
@@ -27,6 +48,12 @@ let vampires = [
 ]
 
 let nextID = 5
+
+router.get('/sunlight', auth, (req, res) => {
+    console.log('Count Dracula signs for Carfax Abby');
+    console.log('Quickly draw the shades open and burn him to death!');
+    res.send('<h1>Slash Slash!</h1>')
+})
 
 router.get('/', (req, res) => {
     res.status(200).json(vampires)
