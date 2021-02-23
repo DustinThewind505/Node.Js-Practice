@@ -1,21 +1,13 @@
 // ========== IMPORTS ==========
 const express = require('express');
 
-const plants = [
-    {
-        id: 1,
-        name: 'Mullen'
-    }, {
-        id: 2,
-        name: 'Sun Flower'
-    }
-]
+const plantRoutes = require('./Plants/plantsRoutes');
 
 // ========== SERVER ==========
 const server = express();
 
-server.get('/', (req, res) => res.status(200).send('Ello Poppet'))
+server.use('/plants', plantRoutes);
 
-server.get('/plants', (req, res) => res.status(200).json(plants))
+server.get('/', (req, res) => res.status(200).send('<h1>Go to localhost:8000/plants</h1>'))
 
 module.exports = server;
