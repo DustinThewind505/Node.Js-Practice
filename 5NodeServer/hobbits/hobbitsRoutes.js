@@ -1,14 +1,7 @@
 const express = require('express');
-const morgan = require('morgan');
-
 
 const router = express.Router();
 router.use(express.json());
-
-function logger(req, res, next) {
-    console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.get('Origin')}`);
-    next();
-}
 
 function atTheGates(req, res, next) {
     console.log('At the gates about to be eaten');
@@ -23,7 +16,6 @@ function auth(req, res, next) {
     }
 }
 
-router.use(morgan('tiny'))
 router.use(atTheGates)
 
 

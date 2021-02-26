@@ -3,11 +3,6 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 
-function logger(req, res, next) {
-    console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url}`);
-    next();
-}
-
 function approachTheCastle(req, res, next) {
     console.log('Approach the castle door, Dracula invites you inside...');
     next();
@@ -21,7 +16,6 @@ function auth(req, res, next) {
     }
 }
 
-router.use(logger);
 router.use(approachTheCastle);
 
 let vampires = [
