@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000;
 
 // === Home page ===
 server.get('/', (req, res) => {
-    res.status(200).send('<h1>Go to http://localhost:8000/users</h1><h1>Go to http://localhost:8000/sodas</h1>')
+    res.status(200).send(`<h1>Go to http://localhost:${port}/users</h1><h1>Go to http://localhost:${port}/sodas</h1>`)
 })
 
 // === 404 page ===
