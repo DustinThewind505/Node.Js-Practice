@@ -1,13 +1,20 @@
 // ========== IMPORTS ==========
 const express = require('express');
+const morgan = require('morgan');
 
-const plantRoutes = require('./Plants/plantsRoutes');
+const usersRoute = require('./users/usersRoutes');
+const sodasRoutes = require('./sodas/sodasRoutes');
+
 
 // ========== SERVER ==========
 const server = express();
 
-server.use('/plants', plantRoutes);
+server.use('/users', usersRoute);
+server.use('/sodas', sodasRoutes);
 
-server.get('/', (req, res) => res.status(200).send('<h1>Go to localhost:8000/plants</h1>'))
+server.use(express.json());
+server.use(morgan('tiny'));
+
+
 
 module.exports = server;
