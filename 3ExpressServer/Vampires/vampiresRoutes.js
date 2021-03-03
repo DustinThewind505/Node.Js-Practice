@@ -1,41 +1,37 @@
 const express = require('express');
 
-let vampires = [
-    {
-        name: 'Gangrel'
-    },
-    {
-        name: 'Dracula'
-    },
-    {
-        name: 'Edward'
-    },
-    {
-        name: 'Blade'
-    }
-]
+const db = require('../data/db-config');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.status(200).json(vampires)
+    db('vampires')
+    .then(vampireArray => res.status(200).json(vampireArray))
+    .catch(err => res.status(500).json({error: err}))
 })
+
+router.get('/:id', (req, res) => {
+    db('vampires').where('id', req.params.id).first()
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json({error: err}))
+});
 
 router.post('/', (req, res) => {
-    const newVampire = req.body;
-
-    vampires.push(newVampire);
-
-    res.status(201).send('newVampire')
+    db('vampires').insert(req.body)
+    .then(count => res.status(201).json(count))
+    .catch(err => res.status(500).json({error: err}))
 })
 
-router.delete('/:name', (req, res) => {
-    const vampire = vampires.find(vampire => vampire.name === req.params.name);
+router.put('/:id', (req, res) => {
+    db('vampires').where('id', req.params.id).update(req.body)
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json({error: err}))
+})
 
-    vampires = vampires.filter(element => element.name !== vampire.name)
-
-    res.status(200).json(vampires)
-
+router.delete('/:id', (req, res) => {
+    db('vampires').where({id: req.params.id}).delete()
+    .then(count => res.status(500).json(count))
+    .catch(err => res.status(500).json({error: err}))
 })
 
 
