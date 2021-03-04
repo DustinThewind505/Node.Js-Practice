@@ -1,18 +1,14 @@
-// IMPORTS AT THE TOP
-// IMPORTS AT THE TOP
-// IMPORTS AT THE TOP
+const express = require('express');
+const morgan = require('morgan');
 
-// INSTANCE OF EXPRESS APP
-// INSTANCE OF EXPRESS APP
-// INSTANCE OF EXPRESS APP
+const DogsRouter = require('./dog-router');
 
-// GLOBAL MIDDLEWARE
-// GLOBAL MIDDLEWARE
-// GLOBAL MIDDLEWARE
+const server = express();
 
-// ENDPOINTS
-// ENDPOINTS
-// ENDPOINTS
+server.use(express.json());
+server.use(morgan('tiny'));
+
+server.use('/dogs', DogsRouter);
 
 // [GET] / (Hello World endpoint)
 
@@ -26,6 +22,4 @@
 
 // [DELETE] /api/dogs/:id (D of CRUD, remove dog with :id)
 
-// EXPOSING THE SERVER TO OTHER MODULES
-// EXPOSING THE SERVER TO OTHER MODULES
-// EXPOSING THE SERVER TO OTHER MODULES
+module.exports = server;

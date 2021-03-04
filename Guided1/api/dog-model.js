@@ -11,9 +11,9 @@ module.exports = {
     return Promise.resolve(dogs)
   },
 
-  findById(id) {
+  findById(name) {
     // SELECT * FROM dogs WHERE id = 1;
-    const dog = dogs.find(d => d.id === id)
+    const dog = dogs.find(d => d.name === name)
     return Promise.resolve(dog)
   },
 
@@ -24,22 +24,22 @@ module.exports = {
     return Promise.resolve(newDog)
   },
 
-  update(id, changes) {
+  update(name, changes) {
     // UPDATE dogs SET name = 'Foo', weight = 9, adopter_id = 'abc' WHERE id = 1;
-    const dog = dogs.find(dog => dog.id === id)
+    const dog = dogs.find(dog => dog.name === name)
     if (!dog) return Promise.resolve(null)
 
-    const updatedDog = { ...changes, id }
-    dogs = dogs.map(d => (d.id === id) ? updatedDog : d)
+    const updatedDog = { ...dog, name: req.body.name }
+    dogs = dogs.map(d => (d.name === name) ? updatedDog : d)
     return Promise.resolve(updatedDog)
   },
 
-  delete(id) {
-    // DELETE FROM dogs WHERE id = 1;
-    const dog = dogs.find(dog => dog.id === id)
+  delete(name) {
+    // DELETE FROM dogs WHERE name = 1;
+    const dog = dogs.find(dog => dog.name === name)
     if (!dog) return Promise.resolve(null)
 
-    dogs = dogs.filter(d => d.id !== id)
+    dogs = dogs.filter(d => d.name !== name)
     return Promise.resolve(dog)
   }
 }
