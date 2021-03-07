@@ -5,9 +5,10 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('humans').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+        {HumanName: 'Deadpool', WerewolfID: 3, VampireID:2},
+        {HumanName: 'Abe Lincoln', WerewolfID:5, VampireID: 3},
+        {HumanName: 'VanHelsing', WerewolfID: 5, VampireID:2},
+        {HumanName: 'Buffy', WerewolfID: 6, VampireID: 4},
       ]);
     });
 };

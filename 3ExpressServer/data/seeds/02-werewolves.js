@@ -5,12 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('werewolves').insert([
-        {Name: 'Jacob', Weakness: 'Girls', Age: 15},
-        {Name: 'Jack Nicholson', Weakness: 'sunlight', Age: 590},
-        {Name: 'Edward', Weakness: 'girls', Age: 137},
-        {Name: 'Spike', Weakness: 'girls', Age: 168},
-        {Name: 'Cheech', Weakness: 'crosses', Age: 74},
-        {Name: 'Lilith', Weakness: 'lasers', Age: 8000}
+        {WereWolfName: 'Jacob', WereWolfWeakness: 'girls', WereWolfAge: 15},
+        {WereWolfName: 'Jack Nicholson', WereWolfWeakness: 'sunlight', WereWolfAge: 69},
+        {WereWolfName: 'Rob Schnieder', WereWolfWeakness: 'goats', WereWolfAge: 50},
+        {WereWolfName: 'London Guy', WereWolfWeakness: 'girls', WereWolfAge: 29},
+        {WereWolfName: 'Lucious', WereWolfWeakness: 'girls', WereWolfAge: 1074},
+        {WereWolfName: 'Michael Jacson', WereWolfWeakness: 'mean words', WereWolfAge: 60}
       ]);
     });
 };
