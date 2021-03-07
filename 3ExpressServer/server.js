@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const HumansRoutes = require('./Humans/humansRouter');
 const VampireRoutes = require('./Vampires/vampiresRoutes');
 
 const gandlafThreeSeconds = (req, res, next) => {
@@ -22,6 +23,7 @@ server.use(gandlafThreeSeconds);
 server.use(morgan('tiny'));
 
 server.use('/vampires', VampireRoutes)
+server.use('/humans', HumansRoutes);
 
 server.get('/', (req, res) => {
     res.send('<h1>Ello Poppet</h1>')
