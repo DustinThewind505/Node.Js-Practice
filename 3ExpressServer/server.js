@@ -3,7 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 
 const HumansRoutes = require('./Humans/humansRouter');
-const VampireRoutes = require('./Vampires/vampiresRoutes');
+const VampiresRoutes = require('./Vampires/vampiresRoutes');
+const WereWolfWolvesRoutes = require('./WereWolves/wereWolvesRouter');
 
 const gandlafThreeSeconds = (req, res, next) => {
     const seconds = new Date().getSeconds();
@@ -22,8 +23,9 @@ server.use(gandlafThreeSeconds);
 
 server.use(morgan('tiny'));
 
-server.use('/vampires', VampireRoutes)
 server.use('/humans', HumansRoutes);
+server.use('/vampires', VampiresRoutes);
+server.use('/werewolves', WereWolfWolvesRoutes);
 
 server.get('/', (req, res) => {
     res.send('<h1>Ello Poppet</h1>')
