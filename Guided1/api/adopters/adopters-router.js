@@ -1,12 +1,12 @@
 const express = require('express');
-const db  = require('./dog-model');
+const Adopters = require('./adopters-model');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    db.findAll()
-    .then(dogs => {
-        res.status(200).json(dogs)
+    Adopters.findAll()
+    .then(adoptersArray => {
+        res.status(200).json(adoptersArray)
     })
     .catch(err => {
         res.status(500).json({ error: err})
@@ -14,9 +14,12 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:name', (req, res) => {
-    db.findById(req.params.name)
-    .then(dog => {
-        res.status(200).json(dog)
+    const { name } = req.params;
+
+
+    Adopters.findBy(name)
+    .then(adopter => {
+        res.status(200).json(adopter)
     })
     .catch(err => {
         res.status(500).json({ error: err})
@@ -24,7 +27,9 @@ router.get('/:name', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    db.create(req.body)
+    const newAdopter = req.body;
+
+    Adopters.addAdopter(newAdopter)
     .then(count => {
         res.status(200).json(count)
     })
@@ -34,7 +39,10 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:name', (req, res) => {
-    db.update(req.params.name, req.body)
+    const { name } = req.params;
+    const updatedAdopter = req.body;
+
+    Adopters.updateAdopter(name, updatedAdopter)
     .then(count => {
         res.status(200).json(count)
     })
@@ -44,7 +52,9 @@ router.put('/:name', (req, res) => {
 })
 
 router.delete('/:name', (req, res) => {
-    db.delete(req.params.name)
+    const { name } = req.params;
+
+    Adopters.deleteAdopter(name)
     .then(count => {
         res.status(200).json(count)
     })
