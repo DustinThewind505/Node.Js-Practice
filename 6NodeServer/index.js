@@ -5,7 +5,7 @@ const port = process.env.PORT || 8000;
 
 // == Home page ==
 server.get('/', (req, res) => {
-    res.status(200).send(`<h1>Survivor</h1>`)
+    res.status(200).send(`<h1>Register/Login practice</h1>`)
 })
 
 // == 404 page ==

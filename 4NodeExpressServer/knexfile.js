@@ -5,6 +5,11 @@ module.exports = {
         connection: {
             filename: './data/heros.db3'
         },
+        pool: {
+            afterCreate: (conn, done) => {
+              conn.run('PRAGMA forgein_keys = ON', done)
+            }
+          },
         useNullAsDefault: true,
         migrations: {
             directory: './data/migrations'

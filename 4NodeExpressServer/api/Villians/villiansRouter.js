@@ -1,11 +1,11 @@
 const express = require('express');
 
-const db = require('../../data/db-config');
+const Villians = require('./villansModel');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    db('villians')
+    Villians.findAll()
     .then(villiansArray => {
         res.status(200).json(villiansArray)
     })
@@ -15,7 +15,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    db('villians').where('VillianID', req.params.id).first()
+    const id = req.params.id;
+
+    Villians.findByID(id)
     .then(villiansArray => {
         res.status(200).json(villiansArray)
     })
@@ -27,9 +29,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     const newVillian = req.body;
 
-    db('villians').insert(newVillian)
-    .then(villiansArray => {
-        res.status(200).json(villiansArray)
+    Villians.addVillian(newVillian)
+    .then(count => {
+        res.status(200).json(count)
     })
     .catch(err => {
         res.status(500).json({errorMessage: err})
@@ -37,11 +39,12 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
+    const id = req.params.id;
     const updatedVillian = req.body;
 
-    db('villians').where('VillianID', req.params.id).update(updatedVillian)
-    .then(villiansArray => {
-        res.status(200).json(villiansArray)
+    Villians.updateVillian(id, updatedVillian)
+    .then(count => {
+        res.status(200).json(count)
     })
     .catch(err => {
         res.status(500).json({errorMessage: err})
@@ -49,11 +52,11 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id;
 
-    db('villians').where('VillianID', id).delete()
-    .then(villiansArray => {
-        res.status(200).json(villiansArray)
+    Villians.deleteVillian(id)
+    .then(count => {
+        res.status(200).json(count)
     })
     .catch(err => {
         res.status(500).json({errorMessage: err})

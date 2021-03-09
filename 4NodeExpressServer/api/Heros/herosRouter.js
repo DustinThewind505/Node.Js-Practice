@@ -1,23 +1,13 @@
 const express = require('express');
 
-const Hubs = require('./hubsModel');
+const Heros = require('./herosModel');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    Hubs.findAll()
-    .then(hubsArray => {
-        res.status(200).json(hubsArray)
-    })
-    .catch(err => {
-        res.status(500).json({errorMessage: err})
-    })
-})
-
-router.get('/', (req, res) => {
-    Hubs.findAll()
-    .then(hubsArray => {
-        res.status(200).json(hubsArray)
+    Heros.findAll()
+    .then(herosArray => {
+        res.status(200).json(herosArray)
     })
     .catch(err => {
         res.status(500).json({errorMessage: err})
@@ -27,9 +17,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id;
 
-    Hubs.findByID(id)
-    .then(hub => {
-        res.status(200).json(hub)
+    Heros.findByID(id)
+    .then(herosArray => {
+        res.status(200).json(herosArray)
     })
     .catch(err => {
         res.status(500).json({errorMessage: err})
@@ -37,9 +27,9 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const newPost = req.body;
+    const newHero = req.body;
 
-    Hubs.addHub(newPost)
+    Heros.addHero(newHero)
     .then(count => {
         res.status(200).json(count)
     })
@@ -50,9 +40,9 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     const id = req.params.id;
-    const newPost = req.body;
-    
-    Hubs.updateHub(id, newPost)
+    const updatedHero = req.body;
+
+    Heros.updateHero(id, updatedHero)
     .then(count => {
         res.status(200).json(count)
     })
@@ -64,7 +54,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
 
-    Hubs.deleteHub(id)
+    Heros.deleteHero(id)
     .then(count => {
         res.status(200).json(count)
     })
