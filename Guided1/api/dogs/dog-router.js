@@ -1,9 +1,11 @@
 const express = require('express');
 const Dogs = require('./dog-model');
 
+const auth = require('../../auth/restrictedMiddleware');
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
     Dogs.findAll()
     .then(dogsArray => {
         res.status(200).json(dogsArray)
