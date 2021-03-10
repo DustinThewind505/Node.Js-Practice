@@ -1,7 +1,7 @@
 require('dotenv').config();
 const server = require('./api/server');
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8002;
 
 server.get('/', (req, res) => {
     res.status(200).send('<h1>Practice API running...</h1>')
