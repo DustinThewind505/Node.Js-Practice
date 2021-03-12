@@ -1,14 +1,16 @@
 require('dotenv').config();
 const server = require('./api/server');
 
-const port = process.env.PORT || 8002;
+const port = process.env.PORT || 8001;
 
+// == home page ==
 server.get('/', (req, res) => {
-    res.status(200).send('<h1>Practice API running...</h1>')
+    res.status(200).send('<h1>Welcome to an Express api with knex session</h1>')
 })
 
-server.use(function(req, res){
-    res.status(404).send('<h1>🥞 404 Page not found 🥞</h1>')
+// == 404 page ==
+server.use(function(req, res) {
+    res.status(404).send('<h1 style="text-align:center;color:red;text-decoration: underline;">🛑 404 page not found 🛑</h1>')
 })
 
 server.listen(port, () => {

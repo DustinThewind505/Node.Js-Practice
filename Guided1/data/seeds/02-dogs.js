@@ -1,13 +1,12 @@
-
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('dogs').truncate()
     .then(function () {
       // Inserts seed entries
       return knex('dogs').insert([
-        {name: 'Fido', weight: 15, adopter_id: 1},
-        {name: 'Patch', weight: 40, adopter_id: 2},
-        {name: 'Bolto', weight: 75, adopter_id: 3}
+        {dogName: 'Fido', weight: 15, adopterID: 1},
+        {dogName: 'Patch', weight: 40, adopterID: 2},
+        {dogName: 'Bolto', weight: 75, adopterID: 3}
       ]);
     });
-};
+}
