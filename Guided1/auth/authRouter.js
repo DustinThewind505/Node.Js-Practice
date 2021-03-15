@@ -29,14 +29,15 @@ router.post('/login', (req, res) => {
     Users.findBy({username})
     .then(user => {
         if(user && bcrypt.compareSync(password, user[0].password)) {
-            const token = generateJWT(user)
+            const token = generateJWT(user[0])
+            console.log(user)
             res.status(200).json({user, token})
         } else {
             res.status(401).json({errorMessage: 'Please enter valid credentials'})
         }
     })
     .catch(err => {
-        res.status(500).json({errorMessage: err.message})
+        res.status(500).json({errorMessage: 'Must enter credentials'})
     })
 })
 
@@ -52,9 +53,9 @@ router.get('/logout', (req, res) => {
 
 function generateJWT(user) {
     const payload = {
-        subject: user.id,
+        userID: user.userID,
         username: user.username,
-        role: user.role
+        userRole: user.userRole
     }
 
     const secret = process.env.JWT_SECRET || 'Pirates';

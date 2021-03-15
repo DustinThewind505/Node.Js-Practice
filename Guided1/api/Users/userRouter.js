@@ -9,7 +9,7 @@ router.get('/', restricted, (req, res) => {
     User.findAll()
     .then(usersArray => {
         if(usersArray) {
-            res.status(200).json(usersArray)
+            res.status(200).json({usersArray, jwt: req.jwt})
         } else {
             res.status(404).json({errorMessage: '404 Could not find users'})
         }
