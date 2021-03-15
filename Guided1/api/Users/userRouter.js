@@ -1,10 +1,11 @@
 const express = require('express');
+const restricted = require('../../auth/restrictedMiddleware');
 
 const User = require('./usersModel');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     User.findAll()
     .then(usersArray => {
         if(usersArray) {

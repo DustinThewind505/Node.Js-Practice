@@ -1,8 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const Users = require('../api/Users/usersModel');
-const { is } = require('bluebird');
 
 const router = express.Router();
 
@@ -29,14 +29,41 @@ router.post('/login', (req, res) => {
     Users.findBy({username})
     .then(user => {
         if(user && bcrypt.compareSync(password, user[0].password)) {
-            res.status(200).json(user)
+            const token = generateJWT(user)
+            res.status(200).json({user, token})
         } else {
-            res.status(401).json({errorMessage: 'Please eneter valid credentials'})
+            res.status(401).json({errorMessage: 'Please enter valid credentials'})
         }
     })
     .catch(err => {
         res.status(500).json({errorMessage: err.message})
     })
 })
+
+router.get('/logout', (req, res) => {
+    if(req.session) {
+        req.session.destroy();
+        res.status(200).send('BYEBYE');
+    } else {
+        res.status(401).json({message: 'already logged out'})
+    }
+    res.send('bybye')
+})
+
+function generateJWT(user) {
+    const payload = {
+        subject: user.id,
+        username: user.username,
+        role: user.role
+    }
+
+    const secret = process.env.JWT_SECRET || 'Pirates';
+
+    const options = {
+        expiresIn: '1h'
+    }
+
+    return jwt.sign(payload, secret, options)
+}
 
 module.exports = router;
