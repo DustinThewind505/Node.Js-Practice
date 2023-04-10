@@ -1,11 +1,26 @@
-// ========== IMPORTS ==========
-const http = require('http');
+// // ========== IMPORTS ==========
+// const http = require('http');
 
-// ========== SERVER ==========
+// // ========== SERVER ==========
+// const server = http.createServer((req, res) => {
+//     res.statusCode = 200
+//     res.setHeader('Content-Type', 'text/plain')
+//     res.end('Hello from basic node.js server')
+// })
+
+// server.listen(8000, () => console.log(`\n\t\t***Server is listening on port 8000***\n`))
+
+
+const http = require("http");
+
+const PORT = 3000;
+
 const server = http.createServer((req, res) => {
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'text/plain')
-    res.end('Hello from basic node.js server')
-})
+    res.statusCode = 226;
+    res.end('<body style="background-color: black;"><h1 style="font-size: 5rem; color: red; text-align: center;">Hello World 4/10</h1></body>>');
+});
 
-server.listen(8000, () => console.log(`\n\t\t***Server is listening on port 8000***\n`))
+server.listen(PORT, () => {
+    console.log(`Server is ON using port ${PORT}`);
+    console.log(http);
+});
