@@ -10,14 +10,17 @@
 
 // server.listen(8000, () => console.log(`\n\t\t***Server is listening on port 8000***\n`))
 
-
+// ============ IMPORTS ============
 const http = require("http");
 
+// ============ VARIABLES ============
 const PORT = 3000;
 
+// ============ SERVER ============
 const server = http.createServer((req, res) => {
     res.statusCode = 226;
-    res.end('<body style="background-color: black;"><h1 style="font-size: 5rem; color: red; text-align: center;">Hello World 4/10</h1></body>>');
+    res.setHeader('Cookie', ['type=banana', 'language=javascript'])
+    res.end('<body style="background-color: black;"><h1 style="font-size: 5rem; color: red; text-align: center;">Hello World 4/10</h1></body>');
 });
 
 server.listen(PORT, () => {
