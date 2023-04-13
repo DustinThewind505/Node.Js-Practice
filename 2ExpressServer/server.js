@@ -6,7 +6,7 @@ const path = require('path');
 const port = 8001;
 
 // ========== SERVER ==========
-const server = express();
+// const server = express();
 
 // const gateKeeper = (req, res, next) => {
 //     // Add middleware that returns a 401 status every 3 seconds
@@ -23,22 +23,31 @@ const server = express();
 
 // server.use(gateKeeper);
 
-server.get('/', (req, res) => res.status(200).send('Hello from basic express server'))
+// server.get('/', (req, res) => res.status(200).send('Hello from basic express server'))
 
-server.get('/download', (req, res, next) => {
-    const filePath = path.join(__dirname, 'index.html');
-    res.sendFile(filePath, err => {
-        if (err) {
-            next(err);
-        } else {
-            console.log('file sent successfully')
-        }
-    });
-})
+// server.get('/download', (req, res, next) => {
+    // const filePath = path.join(__dirname, 'index.html');
+    // res.sendFile(filePath, err => {
+        // if (err) {
+            // next(err);
+        // } else {
+            // console.log('file sent successfully')
+        // }
+    //  });
+// })
 
-server.use((err, req, res, next) => {
-    console.log(err);
-    res.status(404).json({ message: 'There was an error performing the required action', error: err })
-})
+// server.use((err, req, res, next) => {
+    // console.log(err);
+    // res.status(404).json({ message: 'There was an error performing the required action', error: err })
+// })
 
-server.listen(port, () => console.log(`\n\t\t***Server is listening on ${port}***\n`))
+// server.listen(port, () => console.log(`\n\t\t***Server is listening on ${port}***\n`))
+
+
+
+
+// ===== IMPORTS =====
+
+// ===== VARIABLES =====
+
+// ===== SERVER =====

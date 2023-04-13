@@ -24,6 +24,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-    console.log(`Server is ON using port ${PORT}`);
+    console.log(`\n\n\t**** Server is ON using port ${PORT} ****\n`);
     console.log(http);
 });
