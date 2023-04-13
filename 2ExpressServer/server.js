@@ -1,9 +1,9 @@
 // ========== IMPORTS ==========
-const express = require('express');
+// const express = require('express');
 
-const path = require('path');
+// const path = require('path');
 
-const port = 8001;
+// const port = 8001;
 
 // ========== SERVER ==========
 // const server = express();
@@ -47,7 +47,19 @@ const port = 8001;
 
 
 // ===== IMPORTS =====
+const express = require("express");
 
 // ===== VARIABLES =====
+const PORT = 3002;
 
 // ===== SERVER =====
+const server = express();
+
+server.get("/", (req, res) => {
+	res.send("<h1>Hello World 4/12</h1>");
+});
+
+server.listen(PORT, () => {
+	console.log(`\n\n\t***** Server listening on port ${PORT}\n\n`);
+});
+
