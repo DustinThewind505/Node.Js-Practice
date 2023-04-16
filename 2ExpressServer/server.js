@@ -51,13 +51,38 @@ const express = require("express");
 
 // ===== VARIABLES =====
 const PORT = 3002;
+const characters = [
+	{
+		id: 1,
+		name: "Spawn",
+	},
+	{
+		id: 2,
+		name: "Shaggy",
+	},
+];
 
 // ===== SERVER =====
 const server = express();
 
 server.get("/", (req, res) => {
-	res.send("<h1>Hello World 4/12</h1>");
+	// res.write(`<h1>Hello World 4/12</h1>`);
+	res.json(characters)
 });
+
+server.get("/characters", (req, res) => {
+	const characters = [
+			{
+				id: 1,
+				name: "Riddick",
+			},
+			{
+				id: 2,
+				name: "Kung Lao",
+			},
+	];
+	res.status(200).json(characters);
+})
 
 server.listen(PORT, () => {
 	console.log(`\n\n\t***** Server listening on port ${PORT}\n\n`);
