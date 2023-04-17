@@ -66,8 +66,9 @@ const characters = [
 const server = express();
 
 server.get("/", (req, res) => {
-	// res.write(`<h1>Hello World 4/12</h1>`);
-	res.json(characters)
+	console.log(req);
+	// res.send(`<h1>Hello World 4/12</h1>`);
+	res.json(characters);
 });
 
 server.get("/characters", (req, res) => {
