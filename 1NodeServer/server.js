@@ -38,13 +38,16 @@ const PORT = 3000;
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
     if (req.url === '/') {
+        res.writeHead(200, {'Content-type': 'application/json'})
         res.end(JSON.stringify(products));
     } else if (req.url === '/maya') {
         res.statusCode = 200;
+        res.setHeader('Content-type', 'text/html')
         res.write(`<p style="color: red">You are at "${req.url}"</p>`);
         res.end();
     } else if (req.url === '/inca') {
         res.statusCode = 200;
+        res.setHeader('Cookie', ['type=banana', 'language=javascript'])
         res.write(`<p style="color: green">You are at "${req.url}"</p>`);
         res.end();
     } else if (req.url === '/aztec') {
