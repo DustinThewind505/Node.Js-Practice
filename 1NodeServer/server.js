@@ -37,9 +37,32 @@ const PORT = 3000;
 
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
-    if (req.url === '/') {
+
+    // Set CORS headers =====================================
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Request-Method', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+	res.setHeader('Access-Control-Allow-Headers', '*');
+	if ( req.method === 'OPTIONS' ) {
+		res.writeHead(200);
+		res.end();
+		return;
+	}
+	// ======================================================
+
+    if (req.url === '/' && req.method === 'GET') {
         res.writeHead(200, {'Content-type': 'application/json'})
         res.end(JSON.stringify(products));
+    } else if (req.url === '/00') {
+        res.writeHead(200, {'Content-type': 'application/json'})
+        // console.log(JSON.stringify(req.url.split('')))
+        const url = JSON.stringify(req.url.split(' '))
+        console.log(`The URL is ***`, url)
+        res.end(JSON.stringify(products[0]));
+    } else if (req.url === '/' && req.method === 'POST') {
+        res.writeHead(200, {'Content-type': 'application/json'})
+        console.log(JSON.stringify(req.body))
+        res.end();
     } else if (req.url === '/maya') {
         res.statusCode = 200;
         res.setHeader('Content-type', 'text/html')
@@ -60,7 +83,7 @@ const server = http.createServer((req, res) => {
         res.end();
     } else {
         res.statusCode = 200;
-        res.write(`<p >You are at "${req.url}"</p>`);
+        res.write(`<p >You are at "${req.url}"</p><p>This is not special</p>`);
         res.end();
     }
     // console.log(req)

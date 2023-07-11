@@ -2,7 +2,7 @@
     {
         "id": "1",
         "name": "Helicopter",
-        "description": "A flying machine with a spinning propeller mounte on the roof. Unlike airplanes this vehicle can easily flight up or down vertically.",
+        "description": "A flying machine with a spinning propeller mounted on the roof. Unlike airplanes this vehicle can easily flight up or down vertically.",
         "price": 100000.00
     },
     {
