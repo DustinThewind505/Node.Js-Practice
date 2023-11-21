@@ -2,8 +2,9 @@
 const http = require("http");
 
 // ===== VARIABLES =====
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
+// ===== SERVER =====
 const server = http.createServer((req, res) => {
     res.statusCode = 200
     res.setHeader('Content-Type', 'text/html')
@@ -11,7 +12,6 @@ const server = http.createServer((req, res) => {
     res.end()
 })
 
-// ===== SERVER =====
 server.listen(PORT, () => {
     console.log(`\n\n\t\t***** server listening on port:${PORT} *****`)
 })
