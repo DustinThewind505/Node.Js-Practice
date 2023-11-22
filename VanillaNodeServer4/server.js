@@ -1,6 +1,6 @@
 // ===== IMPORTS =====
 const http = require("http");
-const Products = require("./Data/sampleData.json");
+const products = require("./Data/sampleData.json");
 
 // ===== VARIABLES =====
 const PORT = 8000;
@@ -11,55 +11,45 @@ const server = http.createServer((req, res) => {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
         res.write("<body style='text-align:center;'><h1>Products</h1></body>");
-        res.end(JSON.stringify(Products));
+        res.end(JSON.stringify(products)); 
     } else if(req.url === "/products/1") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
         res.write("<body style='text-align:center;'><h1>Product 1</h1></body>");
-        res.end(JSON.stringify(Products[0]));
+        res.end(JSON.stringify(products[0]));
     } else if(req.url === "/products/2") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
         res.write("<body style='text-align:center;'><h1>Product 2</h1></body>");
-        res.end(JSON.stringify(Products[1]));
+        res.end(JSON.stringify(products[1]));
     } else if(req.url === "/products/3") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
         res.write("<body style='text-align:center;'><h1>Product 3</h1></body>");
-        res.end(JSON.stringify(Products[2]));
+        res.end(JSON.stringify(products[2]));
     } else if(req.url === "/products/4") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
         res.write("<body style='text-align:center;'><h1>Product 4</h1></body>");
-        res.end(JSON.stringify(Products[3]));
-    } else if(req.url.match(/\/products\/([0-9]+)/)) {
+        res.end(JSON.stringify(products[3]));
+    } else if(req.url.match(/\/products\/[0-9]+/)) {
         res.statusCode = 404;
         res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Item not found</h1></body>");
-        res.end("Please see our other items.");
-    } else if(req.url === "/hello") {
-        res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Konnichiwa</h1></body>");
-        res.end("Hello");
-    } else if(req.url === "/123") {
-        res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>One Two Three</h1></body>");
-        res.end("123");
+        res.write("<body style='text-align:center;'><h1>Product not available</h1></body>");
+        res.end("nodeJS");
     } else if(req.url === "/") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Home</h1></body>");
-        res.end("Welcome home~!");
+        res.write("<body style='text-align:center;'><h1>Hello World</h1></body>");
+        res.end("nodeJS");
     } else {
         res.statusCode = 404;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='background:black;color:red;text-align:center;'><h1>404 Page not found</h1><a href='http://localhost:8000/'>home</a><br/><a href='http://localhost:8000/hello'>hello</a><br/><a href='http://localhost:8000/123'>123</a><br/></body>");
-        res.end("Please try again");
+        res.setHeader("content-type", "text/html");
+        res.write("<body style='text-align:center;background-color:black;color:red;'><h1>404 page not found</h1></body>");
+        res.end("nodeJS");
     }
-})
+});
 
 server.listen(PORT, () => {
-    console.log(`\n\n\t\t***** server listening on port ${8000} *****\n`);
+    console.log(`\n\n\t\t***** Server listening on port ${PORT} *****\n`);
 });
