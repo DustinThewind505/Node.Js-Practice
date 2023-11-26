@@ -61,5 +61,5 @@ const server = http.createServer((req, res) => {
 })
 
 server.listen(PORT, () => {
-    console.log(`\n\n\t\t***** server listening on port ${8000} *****\n`);
+    console.log(`\n\n\t\t***** server listening on port ${PORT} *****\n`);
 });

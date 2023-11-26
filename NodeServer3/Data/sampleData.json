@@ -8,7 +8,7 @@
     {
         "id": "2",
         "name": "Computer",
-        "description": "A piece of plastic powered by electricity. This box can store data inside of it. It can also cumminicate wth outher pieces of metal",
+        "description": "A piece of plastic powered by electricity. This box can store data inside of it. It can also communicate with other pieces of metal",
         "price": 400.000
     },
     {
