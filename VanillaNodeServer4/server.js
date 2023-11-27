@@ -1,6 +1,7 @@
 // ===== IMPORTS =====
 const http = require("http");
-const products = require("./Data/sampleData.json");
+// const Products = require("./Models/productsModel");
+const Products = require("./Controllers/productsController");
 
 // ===== VARIABLES =====
 const PORT = 8000;
@@ -8,10 +9,7 @@ const PORT = 8000;
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
     if(req.url === "/products") {
-        res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Products</h1></body>");
-        res.end(JSON.stringify(products)); 
+        Products.getProducts(req, res)
     } else if(req.url === "/products/1") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
@@ -23,10 +21,15 @@ const server = http.createServer((req, res) => {
         res.write("<body style='text-align:center;'><h1>Product 2</h1></body>");
         res.end(JSON.stringify(products[1]));
     } else if(req.url === "/products/3") {
+        const productName = JSON.stringify(products[2].name).split('')
+        productName.pop()
+        productName.shift()
+        productName.join(' ')
+        const product = JSON.stringify(products[2])
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 3</h1></body>");
-        res.end(JSON.stringify(products[2]));
+        res.write(`<body style='text-align:center;'><h1>Product 3</h1><p>${productName}</p></body>`);
+        res.end(JSON.stringify(products[2]), console.log(productName));
     } else if(req.url === "/products/4") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
