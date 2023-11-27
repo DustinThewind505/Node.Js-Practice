@@ -1,7 +1,6 @@
 // ===== IMPORTS =====
 const http = require("http");
-// const Products = require("./Models/productsModel");
-const Products = require("./Controllers/productsController");
+const products = require("./Data/sampleData.json");
 
 // ===== VARIABLES =====
 const PORT = 8000;
@@ -9,22 +8,22 @@ const PORT = 8000;
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
     if(req.url === "/products") {
-        Products.getProducts(req, res)
+        res.statusCode = 200;
+        res.setHeader("Content-type", "text/html");
+        res.write(`<body style='text-align:center;'><h1>Products</h1><p>${JSON.stringify(products)}</p></body>`);
+        res.end(JSON.stringify(products)); 
     } else if(req.url === "/products/1") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 1</h1></body>");
+        res.write(`<body style='text-align:center;'><h1>Product 1</h1><p>${JSON.stringify(products[0].name)}</p></body>`);
         res.end(JSON.stringify(products[0]));
     } else if(req.url === "/products/2") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 2</h1></body>");
+        res.write(`<body style='text-align:center;'><h1>Product 2</h1><h2>${JSON.stringify(products[1].name)}: $${JSON.stringify(products[1].price)}</h2><p>${JSON.stringify(products[1].description)}</p></body>`);
         res.end(JSON.stringify(products[1]));
     } else if(req.url === "/products/3") {
-        const productName = JSON.stringify(products[2].name).split('')
-        productName.pop()
-        productName.shift()
-        productName.join(' ')
+        const productName = JSON.stringify(products[2].name).split('').join("")
         const product = JSON.stringify(products[2])
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
@@ -33,7 +32,7 @@ const server = http.createServer((req, res) => {
     } else if(req.url === "/products/4") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 4</h1></body>");
+        res.write(`<body style='text-align:center;'><h1>Product 4</h1><p>${JSON.stringify(products[3].name)}</p></body>`);
         res.end(JSON.stringify(products[3]));
     } else if(req.url.match(/\/products\/[0-9]+/)) {
         res.statusCode = 404;
