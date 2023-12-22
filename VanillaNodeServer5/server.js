@@ -1,8 +1,9 @@
 // ===== IMPORTS =====
 const http = require("http");
+const products = require("./Data/sampleData.json");
 
 // ===== VARIABLES =====
-
+const PORT = 8000;
 
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
@@ -10,17 +11,27 @@ const server = http.createServer((req, res) => {
         res.statusCode = 200
         res.setHeader("Content-type", "text/html")
         res.write("<h1>Products</h1>")
-        res.end("nodeJS")
+        res.end(JSON.stringify(products))
     } else if(req.url === "/products/1") {
         res.statusCode = 200
         res.setHeader("Content-type", "text/html")
-        res.write("<h1>Product 1</h1>")
-        res.end("nodeJS")
+        res.write(`<body style="background-color:darkolivegreen;color:red;text-align:center;"><h1>Product 1</h1><h2>${JSON.stringify(products[0].name)}</h2><p>${JSON.stringify(products[0].description)}</p><p>Price: $${JSON.stringify(products[0].price)}</p><img style="border: 2px solid black;" src=${JSON.stringify(products[0].image)}/><br/></body>`)
+        res.end(JSON.stringify(products[0]))
     } else if(req.url === "/products/2") {
         res.statusCode = 200
         res.setHeader("Content-type", "text/html")
         res.write("<h1>Product 2</h1>")
-        res.end("nodeJS")
+        res.end(JSON.stringify(products[1]))
+    } else if(req.url === "/products/3") {
+        res.statusCode = 200
+        res.setHeader("Content-type", "text/html")
+        res.write("<h1>Product 3</h1>")
+        res.end(JSON.stringify(products[2]))
+    } else if(req.url === "/products/4") {
+        res.statusCode = 200
+        res.setHeader("Content-type", "text/html")
+        res.write("<h1>Product 4</h1>")
+        res.end(JSON.stringify(products[3]))
     } else if(req.url === "/") {
         res.statusCode = 200
         res.setHeader("Content-type", "text/html")
@@ -29,12 +40,12 @@ const server = http.createServer((req, res) => {
     } else {
         res.statusCode = 404
         res.setHeader("Content-type", "text/html")
-        res.write("<h1>404 Page not found</h1>")
-        res.end("nodeJS")
+        res.write('<body style="background-color:black;color:red;text-align:center;"><h1>404 Page not found</h1><ul style="list-style-type:none;"><li><a href="http://localhost:8000">Home</a></li><li><a href="http://localhost:8000/products">Products</a></li></ul></body>')
+        res.end("😀🎃🎃🎃🌵🌴🌵🌴🔥⚡🔥⚡👁‍🗨")
     }
 
 })
 
-server.listen(8000, () => {
-    console.log("\n\n\n\t\tServer listening on port 8000\t\t\t")
+server.listen(PORT, () => {
+    console.log(`\n\n\n\t\t***** Server listening on port ${PORT} *****\t\t\t`)
 })

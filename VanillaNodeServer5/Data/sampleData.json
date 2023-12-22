@@ -1,0 +1,27 @@
+[
+    {
+        "id": "1",
+        "name": "Helicopter",
+        "description": "A flying machine with a spinning propeller mounted on the roof. Unlike airplanes this vehicle can easily flight up or down vertically.",
+        "price": 100000.00,
+        "image": "https://image.made-in-china.com/2f0j00cmVhldwJdskW/Black-Hawk-RC-Helicopter-4-Rotors-Aileron-Less-Remote-Control-Helicopter-Drone.webp"
+    },
+    {
+        "id": "2",
+        "name": "Computer",
+        "description": "A piece of plastic powered by electricity. This box can store data inside of it. It can also communicate with other pieces of metal",
+        "price": 400.000
+    },
+    {
+        "id": "3",
+        "name": "Candles",
+        "description": "Forms of wax in different shapes and colors. Used to produce light and auromas in a room. Candles can be dangerous when left unattended.",
+        "price": 3.99
+    },
+    {
+        "id": "4",
+        "name": "Sword",
+        "description": "An ancient weapon of death. The sword is capable of slicing living beings in half, or decapitation. Some blades glow blue when orcs are near.",
+        "price": 400.99
+    }
+]
