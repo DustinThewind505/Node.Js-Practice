@@ -1,6 +1,8 @@
 // ===== IMPORTS =====
 const http = require("http");
 const products = require("./Data/sampleData.json");
+const { getAllProducts } = require("./controllers/productsController");
+// const { stringify } = require("querystring");
 
 // ===== VARIABLES =====
 const PORT = 8000;
@@ -8,10 +10,9 @@ const PORT = 8000;
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
     if(req.url === "/products") {
-        res.statusCode = 200
-        res.setHeader("Content-type", "text/html")
-        res.write("<h1>Products</h1>")
-        res.end(JSON.stringify(products))
+
+        getAllProducts(req, res);
+
     } else if(req.url === "/products/1") {
         res.statusCode = 200
         res.setHeader("Content-type", "text/html")
@@ -32,10 +33,15 @@ const server = http.createServer((req, res) => {
         res.setHeader("Content-type", "text/html")
         res.write(`<body style="background-color:springgreen;color:darkblue;text-align:center;"><h1>Product 4</h1><p><a style="color:cornflowerblue;" href="http://localhost:8000/products/3"><< previous</a></p><h2>${JSON.stringify(products[3].name)}</h2><p>${JSON.stringify(products[3].description)}</p><p>Price: $${JSON.stringify(products[3].price)}</p><img style="border: 2px solid black;" src=${JSON.stringify(products[3].image)}/><br/></body>`)
         res.end(JSON.stringify(products[3]))
+    } else if(req.url.match(/\/products\/[0-9]+/)) {
+        res.statusCode = 404
+        res.setHeader("Content-type", "text/html")
+        res.write(`<body style="background-color:black;color:limegreen;text-align:center;"><h1>Product not available</h1></body>`)
+        res.end("nodeJS")
     } else if(req.url === "/") {
         res.statusCode = 200
         res.setHeader("Content-type", "text/html")
-        res.write("<h1>Hello World</h1>")
+        res.write(`<body style="text-align:center;"><h1>Hello World</h1></body>`)
         res.end("nodeJS")
     } else {
         res.statusCode = 404

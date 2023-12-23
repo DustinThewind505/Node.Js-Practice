@@ -3,7 +3,7 @@ const http = require("http");
 const products = require("./Data/sampleData.json");
 
 // ===== VARIABLES =====
-const PORT = 8000;
+const PORT = 8001;
 
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
