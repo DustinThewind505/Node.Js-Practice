@@ -11,5 +11,12 @@ function findAll() {
     return products;
 }
 
+function findById(id) {
 
-module.exports = { findAll };
+    const product = products.find((p) => p.id === id )
+
+    return product
+}
+
+
+module.exports = { findAll, findById };
