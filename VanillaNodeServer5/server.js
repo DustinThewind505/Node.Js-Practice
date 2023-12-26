@@ -1,15 +1,14 @@
 // ===== IMPORTS =====
 const http = require("http");
 const products = require("./Data/sampleData.json");
-const { getAllProducts, getProductById } = require("./controllers/productsController");
-// const { stringify } = require("querystring");
+const { getAllProducts, getProductById, addNewProduct } = require("./controllers/productsController");
 
 // ===== VARIABLES =====
 const PORT = 8000;
 
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
-    if(req.url === "/products") {
+    if(req.url === "/products" && req.method === "GET") {
 
         getAllProducts(req, res);
 
@@ -17,6 +16,11 @@ const server = http.createServer((req, res) => {
         const id = req.url.split("/")[2];
         
         getProductById(req, res, id);
+
+    } else if(req.url === "/products" && req.method === "POST") {
+        const newProduct = req.body;
+
+        addNewProduct(req, res, newProduct);
 
     } else if(req.url === "/") {
         res.statusCode = 200

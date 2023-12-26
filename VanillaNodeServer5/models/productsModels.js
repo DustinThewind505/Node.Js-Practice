@@ -18,5 +18,18 @@ function findById(id) {
     return product
 }
 
+function addNew(productObject) {
+    console.log("LENGTH***********", products.length);
 
-module.exports = { findAll, findById };
+    //const newArray = [...products]
+
+    const newProduct = {"id": products[products.length - 1].id + 1, ...productObject};
+    products.push(newProduct);
+     
+
+    console.log("WITH ADDED PRODUCT OBJECT************************", products)
+    return newProduct
+}
+
+
+module.exports = { findAll, findById, addNew };
