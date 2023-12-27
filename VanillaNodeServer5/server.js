@@ -18,9 +18,24 @@ const server = http.createServer((req, res) => {
         getProductById(req, res, id);
 
     } else if(req.url === "/products" && req.method === "POST") {
-        const newProduct = req.body;
 
-        addNewProduct(req, res, newProduct);
+        const testArray = [...products];
+
+        const testProduct = {
+            "name": "Test Product****",
+            "description": "This is the test product. It's not real and is only for testing*****",
+            "price": 100.99,
+            "styles": {
+                "background-color": "black*****",
+                "color": "limegreen*****"
+            }
+        };
+
+        const newProduct = {"id": parseInt(testArray[testArray.length - 1].id) + 1, ...testProduct}
+
+        testArray.push(newProduct);
+
+        res.end(JSON.stringify(testArray))
 
     } else if(req.url === "/") {
         res.statusCode = 200
