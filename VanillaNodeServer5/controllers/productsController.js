@@ -37,15 +37,22 @@ function getProductById(req, res, id) {
 
 }
 
-function addNewProduct(req, res, newProduct) {
+function addNewProduct(req, res) {
+    
+    let body = [];
 
-    const newArray = [{"id": 360}, ...products]
+    req
+        .on("data", chunk => {
+            body.push(chunk)
+            body = Buffer.concat(body);
+            console.log(body)
+            productsModel.addNew(body);
+        })
 
-        newArray.push({"id": 180})
-        console.log(JSON.stringify(newProduct))
 
-        res.statusCode = 200
-        res.end()
+    res.statusCode = 201;
+    res.setHeader("Content-type", "application/json");
+    res.end()
 
 }
 

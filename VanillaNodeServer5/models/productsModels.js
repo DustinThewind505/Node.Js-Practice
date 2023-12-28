@@ -19,16 +19,14 @@ function findById(id) {
 }
 
 function addNew(productObject) {
-    console.log("LENGTH***********", products.length);
+    // console.log(productObject);
 
-    //const newArray = [...products]
+    const newProductObject = {"id": parseInt(products[products.length - 1].id) + 1, ...productObject};
 
-    const newProduct = {"id": products[products.length - 1].id + 1, ...productObject};
-    products.push(newProduct);
-     
+    products.push(productObject);
+    // console.log(products);
 
-    console.log("WITH ADDED PRODUCT OBJECT************************", products)
-    return newProduct
+    return products;
 }
 
 
