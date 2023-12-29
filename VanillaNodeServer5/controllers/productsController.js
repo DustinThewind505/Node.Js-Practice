@@ -41,13 +41,11 @@ function addNewProduct(req, res) {
     
     let body = [];
 
-    req
-        .on("data", chunk => {
-            body.push(chunk)
-            body = Buffer.concat(body);
-            console.log(body)
-            productsModel.addNew(body);
-        })
+    req.on("data", chunk => {
+        body.push(chunk)
+        body = JSON.parse(Buffer.concat(body).toString());
+        productsModel.addNew(body);
+    });
 
 
     res.statusCode = 201;
