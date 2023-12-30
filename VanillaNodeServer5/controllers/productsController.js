@@ -54,5 +54,24 @@ function addNewProduct(req, res) {
 
 }
 
+function editProduct(req, res, id) {
 
-module.exports = { getAllProducts, getProductById, addNewProduct };
+    let body = [];
+
+    req.on("data", chunk => {
+        body.push(chunk);
+    })
+    .on("end", () => {
+        const { description, price } = JSON.parse(Buffer.concat(body).toString());
+        res.write(JSON.stringify(productsModel.updateCurrent(description, price, id)))
+        res.end();
+    })
+
+
+    res.statusCode = 200;
+    res.setHeader("Content-type", "application/json");
+
+}
+
+
+module.exports = { getAllProducts, getProductById, addNewProduct, editProduct };

@@ -1,7 +1,7 @@
 // ===== IMPORTS =====
 const http = require("http");
 const products = require("./Data/sampleData.json");
-const { getAllProducts, getProductById, addNewProduct } = require("./controllers/productsController");
+const { getAllProducts, getProductById, addNewProduct, editProduct } = require("./controllers/productsController");
 
 // ===== VARIABLES =====
 const PORT = 8000;
@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
 
         getAllProducts(req, res);
 
-    } else if(req.url.match(/\/products\/[0-9]+/)) {
+    } else if(req.url.match(/\/products\/[0-9]+/) && req.method === "GET") {
         const id = req.url.split("/")[2];
         
         getProductById(req, res, id);
@@ -20,6 +20,11 @@ const server = http.createServer((req, res) => {
     } else if(req.url === "/products" && req.method === "POST") {
 
         addNewProduct(req, res);
+
+    } else if(req.url.match(/\/products\/[0-9]+/) && req.method === "PUT") {
+        const id = req.url.split("/")[2];
+
+        editProduct(req, res, id);
 
     } else if(req.url === "/") {
         res.statusCode = 200
