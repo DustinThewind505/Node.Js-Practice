@@ -56,14 +56,28 @@ function addNewProduct(req, res) {
 
 function editProduct(req, res, id) {
 
+    const product = productsModel.findById(id);
     let body = [];
 
     req.on("data", chunk => {
         body.push(chunk);
     })
     .on("end", () => {
-        const { description, price } = JSON.parse(Buffer.concat(body).toString());
-        res.write(JSON.stringify(productsModel.updateCurrent(description, price, id)))
+        const bodyObject = JSON.parse(Buffer.concat(body).toString());
+
+        const updatedProduct = {
+            "id": product.id,
+            "name": bodyObject.name || product.name,
+            "description": bodyObject.description || product.description,
+            "price": bodyObject.price || product.price,
+            "image": bodyObject.image || product.image,
+            "styles": {
+                "backgroundColor": bodyObject.styles.backgroundColor || product.styles.backgroundColor || "yellow",
+                "color": bodyObject.styles.color || product.styles.color || "darkolivegreen"
+            }
+
+        }
+        res.write(JSON.stringify(productsModel.updateCurrent(updatedProduct, id)))
         res.end();
     })
 

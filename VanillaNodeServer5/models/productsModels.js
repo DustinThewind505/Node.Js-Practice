@@ -27,42 +27,11 @@ function addNew(productObject) {
     return products;
 }
 
-function updateCurrent(newDescription, newPrice, id) {
+function updateCurrent(product, id) {
 
-    const newProduct = products.find(product => product.id == id)
+    products.splice(parseInt(id) - 1, 1, product);
 
-    if(!id) {
-        return console.log("Product does not exist NO ID")
-    } else if(newDescription && newPrice) {
-
-        newProduct.description = newDescription;
-        newProduct.price = newPrice;
-
-        products.splice(parseInt(id) - 1, 1, newProduct);
-
-        return products;
-
-    } else if(newDescription) {
-
-        newProduct.description = newDescription;
-
-        products.splice(parseInt(id) - 1, 1, newProduct);
-
-        return products;
-
-    } else if(newPrice) {
-
-        newProduct.price = newPrice;
-
-        products.splice(parseInt(id) - 1, 1, newProduct);
-
-        return products;
-
-    } else {
-
-        return console.log("Product does not exist");
-
-    }
+    return products;
 
 }
 
