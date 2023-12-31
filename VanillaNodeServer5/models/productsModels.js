@@ -1,5 +1,5 @@
 // ===== IMPORTS =====
-const products = require("../Data/sampleData.json");
+let products = require("../Data/sampleData.json");
 
 // ===== VARIABLES =====
 
@@ -31,9 +31,19 @@ function updateCurrent(product, id) {
 
     products.splice(parseInt(id) - 1, 1, product);
 
+    return product;
+
+}
+
+function removeCurrent(id) {
+
+    const newArray = products.filter((product) => product.id !== id);
+
+    products = newArray;
+
     return products;
 
 }
 
 
-module.exports = { findAll, findById, addNew, updateCurrent };
+module.exports = { findAll, findById, addNew, updateCurrent, removeCurrent };

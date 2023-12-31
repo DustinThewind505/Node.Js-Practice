@@ -72,8 +72,8 @@ function editProduct(req, res, id) {
             "price": bodyObject.price || product.price,
             "image": bodyObject.image || product.image,
             "styles": {
-                "backgroundColor": bodyObject.styles.backgroundColor || product.styles.backgroundColor || "yellow",
-                "color": bodyObject.styles.color || product.styles.color || "darkolivegreen"
+                "backgroundColor": bodyObject.styles?.backgroundColor || product.styles.backgroundColor || "yellow",
+                "color": bodyObject.styles?.color || product.styles.color || "darkolivegreen"
             }
 
         }
@@ -87,5 +87,13 @@ function editProduct(req, res, id) {
 
 }
 
+function deleteProduct(req, res, id) {
 
-module.exports = { getAllProducts, getProductById, addNewProduct, editProduct };
+    res.statusCode = 200;
+    res.setHeader("Content-type", "application/json");
+    res.end(JSON.stringify(productsModel.removeCurrent(id)));
+
+}
+
+
+module.exports = { getAllProducts, getProductById, addNewProduct, editProduct, deleteProduct };
