@@ -8,7 +8,8 @@
         "styles": {
             "backgroundColor": "DarkOliveGreen",
             "color": "Red"
-        }
+        },
+        "isDeleted": false
     },
     {
         "id": "2",
@@ -19,7 +20,8 @@
         "styles": {
             "backgroundColor": "Silver",
             "color": "DarkSlateGrey"
-        }
+        },
+        "isDeleted": false
     },
     {
         "id": "3",
@@ -30,7 +32,8 @@
         "styles": {
             "backgroundColor": "Maroon",
             "color": "OrangeRed"
-        }
+        },
+        "isDeleted": false
     },
     {
         "id": "4",
@@ -41,6 +44,7 @@
         "styles": {
             "backgroundColor": "SpringGreen",
             "color": "DarkBlue"
-        }
+        },
+        "isDeleted": false
     }
 ]

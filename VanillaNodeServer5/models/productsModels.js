@@ -37,10 +37,6 @@ function updateCurrent(product, id) {
 
 function removeCurrent(id) {
 
-    // const newArray = products.filter((product) => product.id !== id);
-
-    // products = newArray;
-
     products[id - 1].isDeleted = true;
 
     return products;
