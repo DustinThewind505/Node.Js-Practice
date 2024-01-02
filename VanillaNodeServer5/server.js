@@ -1,6 +1,5 @@
 // ===== IMPORTS =====
 const http = require("http");
-const products = require("./Data/sampleData.json");
 const { getAllProducts, getProductById, addNewProduct, editProduct,deleteProduct } = require("./controllers/productsController");
 
 // ===== VARIABLES =====
