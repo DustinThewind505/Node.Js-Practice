@@ -12,8 +12,8 @@ function getAllProducts(req, res) {
     const allProducts = JSON.stringify(productsModel.findAll());
 
     res.statusCode = 200;
-    res.setHeader("Content-type", "text/html");
-    res.write(`<body style='text-align:center;'><h1>Products</h1><p>${allProducts}</p></body>`);
+    res.setHeader("Content-type", "	application/json");
+   res.write(allProducts);
     res.end(allProducts);
 
 }
@@ -38,6 +38,7 @@ function getProductById(req, res, id) {
 }
 
 function addNewProduct(req, res) {
+    console.log("THE REQUEST****", req)
     
     let body = [];
 

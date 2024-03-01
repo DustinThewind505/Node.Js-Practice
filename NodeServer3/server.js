@@ -1,38 +1,33 @@
 // ===== IMPORTS =====
 const http = require("http");
-const Products = require("./Data/sampleData.json");
+const Avengers = require("./Data/sampleData.json");
 
 // ===== VARIABLES =====
 const PORT = 8000;
 
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
-    if(req.url === "/products") {
+    if(req.url === "/avengers") {
         res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Products</h1></body>");
-        res.end(JSON.stringify(Products));
-    } else if(req.url === "/products/1") {
+        res.setHeader("Content-type", "application/json");
+        res.end(JSON.stringify(Avengers));
+    } else if(req.url === "/avenger/1") {
         res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 1</h1></body>");
-        res.end(JSON.stringify(Products[0]));
-    } else if(req.url === "/products/2") {
+        res.setHeader("Content-type", "application/json");
+        res.end(JSON.stringify(Avengers[0]));
+    } else if(req.url === "/avenger/2") {
         res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 2</h1></body>");
-        res.end(JSON.stringify(Products[1]));
-    } else if(req.url === "/products/3") {
+        res.setHeader("Content-type", "application/json");
+        res.end(JSON.stringify(Avengers[1]));
+    } else if(req.url === "/avenger/3") {
         res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 3</h1></body>");
-        res.end(JSON.stringify(Products[2]));
-    } else if(req.url === "/products/4") {
+        res.setHeader("Content-type", "application/json");
+        res.end(JSON.stringify(Avengers[2]));
+    } else if(req.url === "/avenger/4") {
         res.statusCode = 200;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Product 4</h1></body>");
-        res.end(JSON.stringify(Products[3]));
-    } else if(req.url.match(/\/products\/([0-9]+)/)) {
+        res.setHeader("Content-type", "application/json");
+        res.end(JSON.stringify(Avengers[3]));
+    } else if(req.url.match(/\/avenger\/([0-9]+)/)) {
         res.statusCode = 404;
         res.setHeader("Content-type", "text/html");
         res.write("<body style='text-align:center;'><h1>Item not found</h1></body>");
