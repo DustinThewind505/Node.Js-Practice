@@ -7,31 +7,30 @@ const PORT = 8000;
 
 // ===== SERVER =====
 const server = http.createServer((req, res) => {
+
+    // ===== CORS =====**
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Request-Method', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    if ( req.method === 'OPTIONS' ) {
+        res.writeHead(200);
+        res.end();
+        return;
+    }
+    // ================**
+    
+
     if(req.url === "/avengers") {
         res.statusCode = 200;
         res.setHeader("Content-type", "application/json");
         res.end(JSON.stringify(Avengers));
-    } else if(req.url === "/avenger/1") {
+    } else if(req.url.match(/\/avengers\/[0-9]+/)) {
+        const id = req.url.split("/")[2];
+
         res.statusCode = 200;
         res.setHeader("Content-type", "application/json");
-        res.end(JSON.stringify(Avengers[0]));
-    } else if(req.url === "/avenger/2") {
-        res.statusCode = 200;
-        res.setHeader("Content-type", "application/json");
-        res.end(JSON.stringify(Avengers[1]));
-    } else if(req.url === "/avenger/3") {
-        res.statusCode = 200;
-        res.setHeader("Content-type", "application/json");
-        res.end(JSON.stringify(Avengers[2]));
-    } else if(req.url === "/avenger/4") {
-        res.statusCode = 200;
-        res.setHeader("Content-type", "application/json");
-        res.end(JSON.stringify(Avengers[3]));
-    } else if(req.url.match(/\/avenger\/([0-9]+)/)) {
-        res.statusCode = 404;
-        res.setHeader("Content-type", "text/html");
-        res.write("<body style='text-align:center;'><h1>Item not found</h1></body>");
-        res.end("Please see our other items.");
+        res.end(JSON.stringify(Avengers[id - 1]));
     } else if(req.url === "/hello") {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
